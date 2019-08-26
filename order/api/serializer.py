@@ -5,7 +5,8 @@ from order.models import Item, Order, OrderItem
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ("title",
+        fields = ("id",
+                  "title",
                   "slug",
                   "descriptions",
                   "adult_price",

@@ -3,13 +3,20 @@ import {
   Container,
   Divider,
   Dropdown,
-  Grid,
   Header,
   Image,
+  Grid,
   List,
   Menu,
-  Segment
+  Segment,
+  Button,
+  Icon,
+  Responsive,
+  Sidebar,
+  Visibility
 } from "semantic-ui-react";
+
+import { Navbar } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
@@ -24,54 +31,67 @@ class CustomLayout extends React.Component {
     const { authenticated, cart, loading } = this.props;
     console.log(cart);
     return (
-      <div>
-        <Menu inverted>
+      <React.Fragment>
+        <Menu fixed="top" borderless size="mini">
           <Container>
-            <Link to="/">
-              <Menu.Item header>Home</Menu.Item>
-            </Link>
-            <Link to="/items">
-              <Menu.Item header>Trips</Menu.Item>
-            </Link>
-            {authenticated ? (
-              <Menu.Item header onClick={() => this.props.logout()}>
-                Logout
-              </Menu.Item>
-            ) : (
-              <React.Fragment>
-                <Link to="/login">
-                  <Menu.Item header>Login</Menu.Item>
-                </Link>
-                <Link to="/signup">
-                  <Menu.Item header>Signup</Menu.Item>
-                </Link>
-              </React.Fragment>
-            )}
-            <Menu.Menu inverted position="right">
-              <Dropdown
-                text={`${cart !== null ? cart.order_items.length : 0}`}
-                pointing
-                className="link item"
-                loading={loading}
-                icon="cart"
-              >
-                <Dropdown.Menu>
-                  {cart &&
-                    cart.order_items.map(order_item => {
-                      return (
-                        <Dropdown.Item key={order_item.id}>
-                          {order_item.quantity} x {order_item.item.title}
-                        </Dropdown.Item>
-                      );
-                    })}
-                  {cart && cart.order_items.length < 1 ? (
-                    <Dropdown.Item>No items in your cart</Dropdown.Item>
-                  ) : null}
-                  <Dropdown.Divider />
-                  <Dropdown.Header>Check Out</Dropdown.Header>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Menu.Menu>
+            <Menu.Item href="/" header>
+              <Image
+                size="mini"
+                src={require("./1.png")}
+                style={{ marginRight: "1.5em" }}
+              />
+              Universal Travel
+            </Menu.Item>
+
+            <Menu.Item href="/">Home</Menu.Item>
+
+            <Menu.Item href="/trips">
+              <strong>Trips</strong>
+            </Menu.Item>
+
+            <Menu.Item position="right">
+              {authenticated ? (
+                <React.Fragment>
+                  <Menu.Item header onClick={() => this.props.logout()}>
+                    Logout
+                  </Menu.Item>
+                  <Dropdown
+                    text={`${cart !== null ? cart.order_items.length : 0}`}
+                    pointing
+                    className="link item"
+                    loading={loading}
+                    icon="cart"
+                  >
+                    <Dropdown.Menu>
+                      {cart &&
+                        cart.order_items.map(order_item => {
+                          return (
+                            <Dropdown.Item key={order_item.id}>
+                              {order_item.quantity} x {order_item.item.title}
+                            </Dropdown.Item>
+                          );
+                        })}
+                      {cart && cart.order_items.length < 1 ? (
+                        <Dropdown.Item>No items in your cart</Dropdown.Item>
+                      ) : null}
+                      <Dropdown.Divider />
+                      <Dropdown.Header>Check Out</Dropdown.Header>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <Link to="/login">
+                    <Button style={{ marginLeft: "0.5em" }}>Log In</Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button inverted primary style={{ marginLeft: "0.5em" }}>
+                      Sign Up
+                    </Button>
+                  </Link>
+                </React.Fragment>
+              )}
+            </Menu.Item>
           </Container>
         </Menu>
 
@@ -124,7 +144,7 @@ class CustomLayout extends React.Component {
             </Grid>
 
             <Divider inverted section />
-            <Image centered size="mini" src="/logo.png" />
+            <Image centered size="mini" src={require("./1.png")} />
             <List horizontal inverted divided link size="small">
               <List.Item as="a" href="#">
                 Site Map
@@ -141,7 +161,7 @@ class CustomLayout extends React.Component {
             </List>
           </Container>
         </Segment>
-      </div>
+      </React.Fragment>
     );
   }
 }

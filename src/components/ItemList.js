@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   Button,
@@ -10,8 +11,10 @@ import {
   Segment,
   Dimmer,
   Loader,
-  Message
+  Message,
+  AccordionTitle
 } from "semantic-ui-react";
+import Title from "./Title";
 import { authAxios } from "../auth";
 import { itemlistURL, addtocartURL } from "../constant";
 const paragraph = <Image src="/images/wireframe/short-paragraph.png" />;
@@ -50,6 +53,7 @@ class ItemList extends React.Component {
 
   render() {
     const { loading, error, data } = this.state;
+    console.log(data);
     return (
       <Container>
         {error && (
@@ -65,40 +69,34 @@ class ItemList extends React.Component {
               <Loader inverted content="Loading" />
             </Dimmer>
 
-            <Image src="/images/wireframe/short-paragraph.png" />
+            <Image src="https://via.placeholder.com/150" />
           </Segment>
         )}
-        <Item.Group divided>
-          {data.map(item => {
-            return (
-              <Item key={item.id}>
-                <Item.Image src={item.img} />
-                <Item.Content>
-                  <Item.Header as="a">{item.title}</Item.Header>
-                  <Item.Meta>
-                    <span className="cinema">From city: {item.from_city}</span>
-                  </Item.Meta>
-                  <Item.Description>
-                    About This Trip: {item.descriptions}
-                  </Item.Description>
-                  <Item.Extra>
-                    <Button
-                      primary
-                      floated="right"
-                      icon
-                      labelPosition="right"
-                      onClick={() => this.handleAddToCart(item.slug)}
+        <section className="featured-rooms">
+          <Title title="All Trips" />
+          <div className="featured-rooms-center">
+            {data.map(item => {
+              return (
+                <article key={item.id} className="room">
+                  <div className="img-container">
+                    <img src={item.img} alt="Trips" />
+                    <div className="price-top">
+                      <h6>${item.adult_price}</h6>
+                      <p>per person</p>
+                    </div>
+                    <Link
+                      to={"/trips/${item.slug}"}
+                      className="btn btn-primary room-link"
                     >
-                      Order Now!
-                      <Icon name="cart" />
-                    </Button>
-                    <Label color="blue">{item.slug}</Label>
-                  </Item.Extra>
-                </Item.Content>
-              </Item>
-            );
-          })}
-        </Item.Group>
+                      Detail
+                    </Link>
+                  </div>
+                  <p className="room-info">{item.title}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
       </Container>
     );
   }
