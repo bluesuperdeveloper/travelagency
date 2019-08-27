@@ -36,8 +36,8 @@ class LoginForm extends React.Component {
     return (
       <Grid
         textAlign="center"
-        style={{ height: "100vh" }}
-        verticalAlign="middle"
+        style={{ height: "100vh", paddingTop: "80px" }}
+        // verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
               </Segment>
             </Form>
             <Message>
-              New to us? <NavLink to="/signup">Sign Up</NavLink>
+              Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
             </Message>
           </React.Fragment>
         </Grid.Column>

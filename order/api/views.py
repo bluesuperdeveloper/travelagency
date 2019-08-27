@@ -8,8 +8,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from order.models import Item, OrderItem, Order
-from .serializer import ItemSerializer, OrderSerializer
+from order.models import Item, OrderItem, Order, AdItem
+from .serializer import ItemSerializer, OrderSerializer, AdItemSerializer
 
 
 class ItemListView(ListAPIView):
@@ -62,3 +62,9 @@ class OrderDetailView(RetrieveAPIView):
             return order
         except ObjectDoesNotExist:
             raise Http404("No order founded")
+
+
+class AdItemListView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = AdItemSerializer
+    queryset = AdItem.objects.all()

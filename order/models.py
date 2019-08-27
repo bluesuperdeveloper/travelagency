@@ -124,3 +124,15 @@ class Refund(models.Model):
 
     def __str__(self):
         return f"{self.pk}"
+
+# homepage slider data
+
+
+class AdItem(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    adImage = models.ImageField()
+    title = models.CharField(max_length=30)
+    brief = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.title

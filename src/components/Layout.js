@@ -29,7 +29,6 @@ class CustomLayout extends React.Component {
 
   render() {
     const { authenticated, cart, loading } = this.props;
-    console.log(cart);
     return (
       <React.Fragment>
         <Menu fixed="top" borderless size="mini">
@@ -38,16 +37,14 @@ class CustomLayout extends React.Component {
               <Image
                 size="mini"
                 src={require("./1.png")}
-                style={{ marginRight: "1.5em" }}
+                style={{ marginRight: "1em" }}
               />
               Universal Travel
             </Menu.Item>
 
             <Menu.Item href="/">Home</Menu.Item>
 
-            <Menu.Item href="/trips">
-              <strong>Trips</strong>
-            </Menu.Item>
+            <Menu.Item href="/trips">Trips</Menu.Item>
 
             <Menu.Item position="right">
               {authenticated ? (
@@ -94,13 +91,11 @@ class CustomLayout extends React.Component {
             </Menu.Item>
           </Container>
         </Menu>
-
         {this.props.children}
-
         <Segment
           inverted
           vertical
-          style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
+          style={{ margin: "5em 0em 0em", padding: "3em 0em" }}
         >
           <Container textAlign="center">
             <Grid divided inverted stackable>

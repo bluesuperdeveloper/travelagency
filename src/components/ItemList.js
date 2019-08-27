@@ -51,9 +51,15 @@ class ItemList extends React.Component {
       });
   };
 
+  getTrip = slug => {
+    let tempTrip = [...this.state.data];
+    const trip = tempTrip.find(trip => trip.slug === slug);
+    return trip;
+  };
+
   render() {
     const { loading, error, data } = this.state;
-    console.log(data);
+
     return (
       <Container>
         {error && (
@@ -85,7 +91,12 @@ class ItemList extends React.Component {
                       <p>per person</p>
                     </div>
                     <Link
-                      to={"/trips/${item.slug}"}
+                      to={{
+                        pathname: `/trips/${item.slug}`,
+                        state: {
+                          trip: this.getTrip(item.slug)
+                        }
+                      }}
                       className="btn btn-primary room-link"
                     >
                       Detail

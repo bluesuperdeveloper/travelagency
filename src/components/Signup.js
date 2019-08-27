@@ -38,12 +38,12 @@ class RegistrationForm extends React.Component {
     return (
       <Grid
         textAlign="center"
-        style={{ height: "100vh" }}
-        verticalAlign="middle"
+        style={{ height: "100vh", paddingTop: "60px" }}
+        // verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            Signup to your account
+            Signup to Universal Travel
           </Header>
           {error && <p>{this.props.error.message}</p>}
 

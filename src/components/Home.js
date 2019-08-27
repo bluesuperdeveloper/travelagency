@@ -16,6 +16,8 @@ import {
   Visibility,
   Advertisement
 } from "semantic-ui-react";
+import Slider from "./Slider";
+import ItemList from "./ItemList";
 
 const getWidth = () => {
   const isSSR = typeof window === "undefined";
@@ -80,6 +82,8 @@ const ResponsiveContainer = ({ children }) => (
   <div>
     <DesktopContainer>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
+    <Slider />
+    <ItemList />
   </div>
 );
 

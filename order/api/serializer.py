@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from order.models import Item, Order, OrderItem
+from order.models import Item, Order, OrderItem, AdItem
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -58,3 +58,14 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     def get_final_price(self, obj):
         return obj.get_final_price()
+
+
+class AdItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdItem
+        fields = ("id",
+                  "title",
+                  "item",
+                  "brief",
+                  "adImage"
+                  )
