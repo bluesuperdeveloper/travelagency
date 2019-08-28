@@ -1,4 +1,6 @@
-export const itemlistURL = "http://127.0.0.1:8000/api/item-list/";
-export const addtocartURL = "http://127.0.0.1:8000/api/add-to-cart/";
-export const summaryURL = "http://127.0.0.1:8000/api/summary/";
-export const AdItemURL = "http://127.0.0.1:8000/api/ad_items/";
+const baseurl = "http://127.0.0.1:8000/api/";
+
+export const itemlistURL = baseurl + "item-list/";
+export const addtocartURL = baseurl + "add-to-cart/";
+export const summaryURL = baseurl + "summary/";
+export const AdItemURL = baseurl + "ad_items/";

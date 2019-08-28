@@ -10,12 +10,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from order.models import Item, OrderItem, Order, AdItem
 from .serializer import ItemSerializer, OrderSerializer, AdItemSerializer
+from django.db.models import Q
 
 
 class ItemListView(ListAPIView):
     permission_classes = (AllowAny,)
     serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = queryset = Item.objects.all()
+        query = self.request.GET.get("q")
+        print(query)
+        if query:
+            queryset = queryset.filter(
+                Q(slug=query)
+            )
+        return queryset
 
 
 class AddToCart(APIView):

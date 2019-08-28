@@ -17,7 +17,8 @@ class ItemSerializer(serializers.ModelSerializer):
                   "to_city",
                   "start_date",
                   "img",
-                  "terms_conditions")
+                  "terms_conditions",
+                  "images")
 
 
 class StringSerializer(serializers.StringRelatedField):
@@ -61,6 +62,8 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class AdItemSerializer(serializers.ModelSerializer):
+    item = serializers.SerializerMethodField()
+
     class Meta:
         model = AdItem
         fields = ("id",
@@ -69,3 +72,6 @@ class AdItemSerializer(serializers.ModelSerializer):
                   "brief",
                   "adImage"
                   )
+
+    def get_item(self, obj):
+        return ItemSerializer(obj.item).data

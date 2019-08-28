@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { AdItemURL } from "../constant";
-
+import { Link } from "react-router-dom";
 export default class Slider extends Component {
   state = {
     loading: false,
@@ -23,7 +23,7 @@ export default class Slider extends Component {
 
   createPoints = data => {
     let points = [];
-    console.log(data);
+
     // Outer loop to create parent
     for (let i = 0; i < data.length; i++) {
       if (i === 0) {
@@ -55,7 +55,8 @@ export default class Slider extends Component {
     for (let i = 0; i < data.length; i++) {
       if (i === 0) {
         pics.push(
-          <div
+          <a
+            href={"/trips/" + data[i].item.slug}
             key={i}
             className="carousel-item active"
             style={{
@@ -66,11 +67,12 @@ export default class Slider extends Component {
               <h3>{data[i].title}</h3>
               <p>{data[i].brief}</p>
             </div>
-          </div>
+          </a>
         );
       } else {
         pics.push(
-          <div
+          <a
+            href={"/trips/" + data[i].item.slug}
             key={i}
             className="carousel-item"
             style={{
@@ -81,7 +83,7 @@ export default class Slider extends Component {
               <h3>{data[i].title}</h3>
               <p>{data[i].brief}</p>
             </div>
-          </div>
+          </a>
         );
       }
     }
@@ -90,7 +92,7 @@ export default class Slider extends Component {
 
   render() {
     const { loading, error, data } = this.state;
-    console.log(data.length);
+
     return (
       <div style={{ position: "relative", top: "-8px" }}>
         <header>

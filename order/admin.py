@@ -1,8 +1,20 @@
 from django.contrib import admin
 from .models import (Item, Order, OrderItem, Address,
-                     Coupon, Payment, Refund, AdItem)
+                     Coupon, Payment, Refund, AdItem, ItemDetailImg)
 # Register your models here.
-admin.site.register(Item)
+
+
+class ItemImageInline(admin.TabularInline):
+    model = ItemDetailImg
+    extra = 5
+
+
+class ItemImgAdmin(admin.ModelAdmin):
+    inlines = [ItemImageInline, ]
+
+
+admin.site.register(Item, ItemImgAdmin)
+# admin.site.register(Item)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(Address)

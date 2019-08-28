@@ -355,7 +355,7 @@ h6 {
   transform: translate(-50%, -50%) scale(1);
 }
 .room-info {
-  background: var(--darkGrey);
+  background: var(--Grey);
   text-transform: capitalize;
   padding: 0.5rem 0;
   text-align: center;

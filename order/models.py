@@ -129,10 +129,19 @@ class Refund(models.Model):
 
 
 class AdItem(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(
+        Item, on_delete=models.CASCADE, related_name='AdItem')
     adImage = models.ImageField()
     title = models.CharField(max_length=30)
     brief = models.CharField(max_length=150)
 
     def __str__(self):
         return self.title
+
+# Trip detail images for detail page
+
+
+class ItemDetailImg(models.Model):
+    item = models.ForeignKey(
+        Item, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField()

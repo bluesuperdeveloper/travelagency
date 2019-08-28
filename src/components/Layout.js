@@ -79,7 +79,9 @@ class CustomLayout extends React.Component {
               ) : (
                 <React.Fragment>
                   <Link to="/login">
-                    <Button style={{ marginLeft: "0.5em" }}>Log In</Button>
+                    <Button inverted secondary style={{ marginLeft: "0.5em" }}>
+                      Log In
+                    </Button>
                   </Link>
                   <Link to="/signup">
                     <Button inverted primary style={{ marginLeft: "0.5em" }}>
