@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from order.models import Item, Order, OrderItem, AdItem
+from order.models import Item, Order, OrderItem, AdItem, ItemDetailImg
 
 
 class ItemSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Item
         fields = ("id",
@@ -18,7 +19,8 @@ class ItemSerializer(serializers.ModelSerializer):
                   "start_date",
                   "img",
                   "terms_conditions",
-                  "images")
+                  "images"
+                  )
 
 
 class StringSerializer(serializers.StringRelatedField):
