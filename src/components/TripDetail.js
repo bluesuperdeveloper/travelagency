@@ -60,7 +60,6 @@ export default class TripDetail extends Component {
         <h3>Start Date: {data.start_date}</h3>
         <h3>Trip Duration: {data.trip_duration}</h3>
         <h3>Terms of Condition: {data.terms_conditions}</h3>
-        <img style={{ width: "400px", height: "300px" }} src={data.img} />
         {items}
       </div>
     );
