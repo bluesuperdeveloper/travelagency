@@ -145,3 +145,7 @@ class ItemDetailImg(models.Model):
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField()
+
+    @property
+    def image_url(self):
+        return "{0}{1}".format('http://127.0.0.1:8000', self.image.url)

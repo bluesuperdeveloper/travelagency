@@ -3,6 +3,8 @@ from order.models import Item, Order, OrderItem, AdItem, ItemDetailImg
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    images = serializers.SlugRelatedField(
+        many=True, read_only=True, slug_field="image_url")
 
     class Meta:
         model = Item

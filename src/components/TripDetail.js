@@ -34,6 +34,21 @@ export default class TripDetail extends Component {
     if (typeof data === "undefined") {
       return <Redirect to="/error" />;
     }
+
+    const images = data.images;
+    var items = [];
+    if (typeof images != "undefined") {
+      images.map(function(value, index) {
+        items.push(
+          <img
+            style={{ width: "400px", height: "300px" }}
+            key={index}
+            src={value}
+          />
+        );
+      });
+    }
+
     return (
       <div>
         <h1>Trip Title : {data.title}</h1>
@@ -46,6 +61,7 @@ export default class TripDetail extends Component {
         <h3>Trip Duration: {data.trip_duration}</h3>
         <h3>Terms of Condition: {data.terms_conditions}</h3>
         <img style={{ width: "400px", height: "300px" }} src={data.img} />
+        {items}
       </div>
     );
   }
